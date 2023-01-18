@@ -1,5 +1,5 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCX2xTIjDS4rU4_3xRekai3gOMnjhauEaE",
@@ -11,3 +11,5 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
+export default firebase;
