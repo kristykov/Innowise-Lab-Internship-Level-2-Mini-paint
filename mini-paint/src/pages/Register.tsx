@@ -1,8 +1,11 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import firebase from "../firebase-config";
+import { useSelector } from "react-redux";
+import { createUser } from "../store/auth/authThunk";
+import { useAppDispatch } from "../hooks/hooks";
 import classes from "./Register.module.scss";
+import { isAuthenticated } from "../store/auth/authSlice";
 
 type FormValues = {
   email: string;
@@ -11,21 +14,20 @@ type FormValues = {
 
 const Register = () => {
   const { register, handleSubmit } = useForm<FormValues>();
-  const navigate = useNavigate();
+  const [error, setError] = useState("");
+
+  const dispatch = useAppDispatch();
+  const isAuthorised = useSelector(isAuthenticated);
 
   const onSubmit = async ({ email, password }: FormValues) => {
     try {
-      const res = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password);
-      if (res.user) {
-        const userId = res.user.uid;
-        console.log("userId", userId);
-        navigate("/home");
-      }
-    } catch (error) {
-      if (error.code === "auth/email-already-in-use") {
-        console.log("The email is already in use.");
+      const res = await dispatch(createUser({ email, password })).unwrap();
+    } catch (err) {
+      if (
+        err.message ===
+        "Firebase: The email address is already in use by another account. (auth/email-already-in-use)."
+      ) {
+        setError("The email address is already in use. Login please");
       }
     }
   };
@@ -33,6 +35,8 @@ const Register = () => {
   return (
     <div>
       <h2>Register</h2>
+      {error && <p>{error}</p>}
+      {isAuthorised && <Navigate to="/home" replace />}
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">
           <input

@@ -37,5 +37,6 @@ module.exports = {
 
     "arrow-body-style": ["error", "always"],
     "react/jsx-props-no-spreading": "off",
+    "import/prefer-default-export": "off",
   },
 };
