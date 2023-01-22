@@ -12,7 +12,9 @@ const Navigation = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/" element={<Navigate replace to="/home" />} />
         <Route path="/editor" element={<CanvasPage />} />
+        <Route path="/editor/:id" element={<CanvasPage />} />
       </Routes>
     </BrowserRouter>
   );

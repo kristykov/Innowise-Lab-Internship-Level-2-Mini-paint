@@ -1,23 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import thunk from "redux-thunk";
-// import thunkMiddleware from "redux-thunk";
-import rootReducer from "./reducers/rootReducer";
+import rootReducer from "./rootReducer";
 
 const store = configureStore({
   reducer: rootReducer,
-  // middleware: [thunk],
 });
-
-// const store = configureStore({
-//   reducer: rootReducer,
-//   middleware: (getDefaultMiddleware) => {
-//     return [
-//       ...getDefaultMiddleware({
-//         serializableCheck: false,
-//       }),
-//     ];
-//   },
-// });
 
 export default store;
 

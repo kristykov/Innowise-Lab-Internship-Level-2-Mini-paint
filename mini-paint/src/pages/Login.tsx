@@ -6,22 +6,18 @@ import { loginUser } from "../store/auth/authThunk";
 import { useAppDispatch } from "../hooks/hooks";
 import classes from "./Register.module.scss";
 import { isAuthenticated } from "../store/auth/authSlice";
-
-type FormValues = {
-  email: string;
-  password: string;
-};
+import { FormValues } from "../interfaces/index";
 
 const Login = () => {
+  const dispatch = useAppDispatch();
+  const isAuth = useSelector(isAuthenticated);
+
   const { register, handleSubmit } = useForm<FormValues>();
   const [error, setError] = useState("");
 
-  const dispatch = useAppDispatch();
-  const isAuthorised = useSelector(isAuthenticated);
-
   const onSubmit = async ({ email, password }: FormValues) => {
     try {
-      const res = await dispatch(loginUser({ email, password })).unwrap();
+      await dispatch(loginUser({ email, password })).unwrap();
     } catch (err) {
       if (
         err.message ===
@@ -36,7 +32,7 @@ const Login = () => {
     <div>
       <h2>Login</h2>
       {error && <p>{error}</p>}
-      {isAuthorised && <Navigate to="/home" replace />}
+      {isAuth && <Navigate to="/home" replace />}
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">
           <input
