@@ -7,7 +7,9 @@ const Header = ({ logoutHandler, searchHandler }: IHeaderProps) => {
   return (
     <header className={classes["header-wrapper"]}>
       <div className={classes["logo-container"]}>
-        <Link to="/">Logo</Link>
+        <Link className={classes["logo-link"]} to="/home">
+          Logo
+        </Link>
       </div>
       <div className={classes["input-container"]}>
         <label className={classes["input-label"]} htmlFor="search">
