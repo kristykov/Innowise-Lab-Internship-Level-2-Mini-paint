@@ -46,10 +46,6 @@ const HomePage = () => {
     navigate("/login");
   };
 
-  const deleteFileHandler = (id: string) => {
-    // console.log(id);
-  };
-
   const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = (e.currentTarget as HTMLInputElement).value;
     dispatch(searchByName(input));
@@ -81,10 +77,7 @@ const HomePage = () => {
           error={error}
           createNewCanvas={createNewCanvas}
         />
-        <Gallery
-          deleteFileHandler={deleteFileHandler}
-          openCanvas={openCanvas}
-        />
+        <Gallery openCanvas={openCanvas} />
       </div>
     </>
   );

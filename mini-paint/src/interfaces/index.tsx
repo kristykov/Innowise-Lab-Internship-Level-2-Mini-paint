@@ -51,12 +51,10 @@ export interface IGalleryItemProps {
   imgUrl: string;
   date: string;
   onOpenCanvas: (id: string) => void;
-  deleteFileHandler: (id: string) => void;
 }
 
 export interface IGalleryProps {
   openCanvas: (id: string) => void;
-  deleteFileHandler: (id: string) => void;
 }
 
 export interface IControlsProps {

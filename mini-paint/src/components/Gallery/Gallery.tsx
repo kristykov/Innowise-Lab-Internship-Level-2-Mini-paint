@@ -5,7 +5,7 @@ import GalleryItem from "../GalleryItem/GalleryItem";
 import { IFile, IGalleryProps } from "../../interfaces";
 import classes from "./Gallery.module.scss";
 
-const Gallery = ({ openCanvas, deleteFileHandler }: IGalleryProps) => {
+const Gallery = ({ openCanvas }: IGalleryProps) => {
   const files: IFile[] = useSelector(getFilesSelector);
 
   return (
@@ -22,7 +22,6 @@ const Gallery = ({ openCanvas, deleteFileHandler }: IGalleryProps) => {
           {files.map((file) => {
             return (
               <GalleryItem
-                deleteFileHandler={deleteFileHandler}
                 onOpenCanvas={openCanvas}
                 key={file.fileId}
                 fileId={file.fileId}
