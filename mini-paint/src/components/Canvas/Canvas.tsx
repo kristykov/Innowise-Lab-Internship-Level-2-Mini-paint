@@ -54,7 +54,7 @@ const Canvas = ({ canvasRef, file, onSetContext }: ICanvasProps) => {
         canvasRef.current.width = canvasSize.width;
         // eslint-disable-next-line no-param-reassign
         canvasRef.current.height = canvasSize.height;
-        fillCanvasWithColor(context, canvasSize.width, canvasSize.height);
+        // fillCanvasWithColor(context, canvasSize.width, canvasSize.height);
       }
     };
     handleResize();
@@ -64,12 +64,12 @@ const Canvas = ({ canvasRef, file, onSetContext }: ICanvasProps) => {
     };
   }, [canvasRef, context]);
 
-  useEffect(() => {
-    if (context) {
-      setContext(canvasRef.current.getContext("2d"));
-      fillCanvasWithColor(context, canvasSize.width, canvasSize.height);
-    }
-  }, [canvasSize]);
+  // useEffect(() => {
+  //   if (context) {
+  //     setContext(canvasRef.current.getContext("2d"));
+  //     fillCanvasWithColor(context, canvasSize.width, canvasSize.height);
+  //   }
+  // }, [canvasSize]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -94,7 +94,7 @@ const Canvas = ({ canvasRef, file, onSetContext }: ICanvasProps) => {
         setCanvasBg();
       }
     }
-  }, []);
+  }, [canvasSize]);
 
   const startDraw = ({ nativeEvent }: MouseEvent) => {
     const { offsetX, offsetY } = nativeEvent;

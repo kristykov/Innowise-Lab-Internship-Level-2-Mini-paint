@@ -8,7 +8,7 @@ const Header = ({ logoutHandler, searchHandler }: IHeaderProps) => {
     <header className={classes["header-wrapper"]}>
       <div className={classes["logo-container"]}>
         <Link className={classes["logo-link"]} to="/home">
-          Logo
+          ImageDraw
         </Link>
       </div>
       <div className={classes["input-container"]}>
