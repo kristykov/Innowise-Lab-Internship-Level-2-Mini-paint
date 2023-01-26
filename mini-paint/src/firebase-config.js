@@ -2,12 +2,12 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCzMP9lA5AYl--1JJoV7rvdISo3QJyak0A",
-  authDomain: "mini-paint2.firebaseapp.com",
-  projectId: "mini-paint2",
-  storageBucket: "mini-paint2.appspot.com",
-  messagingSenderId: "315093397185",
-  appId: "1:315093397185:web:413f6bc6ea533403ceae40",
+  apiKey: "AIzaSyCiT6ZClU_y0qLvXnms8bSAbmRHJ7dq2xs",
+  authDomain: "painter-c2469.firebaseapp.com",
+  projectId: "painter-c2469",
+  storageBucket: "painter-c2469.appspot.com",
+  messagingSenderId: "429931771547",
+  appId: "1:429931771547:web:417d5949c29eaad596383e",
 };
 
 firebase.initializeApp(firebaseConfig);

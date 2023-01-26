@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
-import Header from "../components/Header";
-import Gallery from "../components/Gallery";
-import { useAppDispatch } from "../hooks/hooks";
-import { uploadFile, getFiles } from "../store/files/filesThunk";
-import { logOut } from "../store/auth/authSlice";
-import { searchByName } from "../store/files/filesSlice";
+import ClipLoader from "react-spinners/ClipLoader";
+import { useSelector } from "react-redux";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import Header from "../../components/Header/Header";
+import Gallery from "../../components/Gallery/Gallery";
+import { useAppDispatch } from "../../hooks/hooks";
+import { uploadFile, getFiles } from "../../store/files/filesThunk";
+import { logOut } from "../../store/auth/authSlice";
+import { searchByName, isLoading } from "../../store/files/filesSlice";
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
+  const loading = useSelector(isLoading);
+
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  dispatch(getFiles());
+  useEffect(() => {
+    dispatch(getFiles());
+  }, []);
 
   const fileHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0] instanceof File) {
@@ -40,6 +46,10 @@ const HomePage = () => {
     navigate("/login");
   };
 
+  const deleteFileHandler = (id: string) => {
+    // console.log(id);
+  };
+
   const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = (e.currentTarget as HTMLInputElement).value;
     dispatch(searchByName(input));
@@ -56,13 +66,25 @@ const HomePage = () => {
   return (
     <>
       <Header logoutHandler={logoutHandler} searchHandler={searchHandler} />
+      {loading && (
+        <ClipLoader
+          color="#fff"
+          loading={loading}
+          size={50}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      )}
       <div className="container">
         <Sidebar
           changeHandler={fileHandler}
           error={error}
           createNewCanvas={createNewCanvas}
         />
-        <Gallery openCanvas={openCanvas} />
+        <Gallery
+          deleteFileHandler={deleteFileHandler}
+          openCanvas={openCanvas}
+        />
       </div>
     </>
   );

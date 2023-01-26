@@ -5,6 +5,7 @@ import { getFiles, createNewFile } from "./filesThunk";
 const initialFilesState = {
   files: [] as IFile[],
   fileNameSearch: "",
+  loading: false,
   error: "",
 };
 
@@ -20,15 +21,23 @@ export const filesSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(createNewFile.pending, (state) => {
+      return {
+        ...state,
+        loading: true,
+      };
+    });
     builder.addCase(
       createNewFile.fulfilled,
       (state, action: PayloadAction<IFile>) => {
         return {
           ...state,
           files: [...state.files, action.payload],
+          loading: false,
         };
       },
     );
+
     builder.addCase(
       getFiles.fulfilled,
       (state, action: PayloadAction<IFile[]>) => {
@@ -46,6 +55,19 @@ export const getFilesSelector = (state: IRootState) => {
   return state.files.files.filter((file) => {
     return file.name.includes(fileNameSearch);
   }) as IFile[];
+};
+
+export const getFileById = (id: string) => {
+  return (state: IRootState): IFile | undefined => {
+    const { files } = state.files;
+    return files.find((file) => {
+      return file.fileId === id;
+    });
+  };
+};
+
+export const isLoading = (state: IRootState) => {
+  return state.files.loading;
 };
 
 export const { searchByName } = filesSlice.actions;

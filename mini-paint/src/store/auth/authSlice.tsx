@@ -21,6 +21,7 @@ export const authSlice = createSlice({
       return {
         ...state,
         userId: null,
+        isAuthenticated: false,
       };
     },
   },
@@ -43,6 +44,12 @@ export const authSlice = createSlice({
         };
       },
     );
+    builder.addCase(createUser.rejected, (state) => {
+      return {
+        ...state,
+        loading: false,
+      };
+    });
     builder.addCase(loginUser.pending, (state) => {
       return {
         ...state,
@@ -61,6 +68,12 @@ export const authSlice = createSlice({
         };
       },
     );
+    builder.addCase(loginUser.rejected, (state) => {
+      return {
+        ...state,
+        loading: false,
+      };
+    });
   },
 });
 
@@ -70,6 +83,10 @@ export const isAuthenticated = (state: IRootState) => {
 
 export const getUserId = (state: IRootState) => {
   return state.auth.userId;
+};
+
+export const isLoading = (state: IRootState) => {
+  return state.auth.loading;
 };
 
 export const { logOut } = authSlice.actions;

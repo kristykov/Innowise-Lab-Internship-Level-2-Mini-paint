@@ -1,6 +1,9 @@
+import { ChangeEvent } from "react";
+
 export interface IRootState {
   auth: IAuth;
   files: IFiles;
+  canvas: ICanvas;
 }
 
 interface IAuth {
@@ -13,8 +16,15 @@ interface IAuth {
 interface IFiles {
   files: IFile[];
   fileNameSearch: string;
+  loading: boolean;
   error: string;
-  progress: number;
+}
+
+interface ICanvas {
+  color: string | null;
+  shape: string | null;
+  tool: string | null;
+  thickness: number;
 }
 
 export type FormValues = {
@@ -41,10 +51,12 @@ export interface IGalleryItemProps {
   imgUrl: string;
   date: string;
   onOpenCanvas: (id: string) => void;
+  deleteFileHandler: (id: string) => void;
 }
 
 export interface IGalleryProps {
   openCanvas: (id: string) => void;
+  deleteFileHandler: (id: string) => void;
 }
 
 export interface IControlsProps {
@@ -61,4 +73,20 @@ export interface ISidebarProps {
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error: string;
   createNewCanvas: () => void;
+}
+
+export interface IToolsProps {
+  onSelectShapeHandler: (shape: string) => void;
+  onSelectToolHandler: (tool: string) => void;
+  onSelectDefaultColorHandler: (color: string) => void;
+  onSelectCustomColorHandler: (e: ChangeEvent<HTMLInputElement>) => void;
+  onSelectThicknessHandler: (e: ChangeEvent<HTMLInputElement>) => void;
+  onClearCanvas: () => void;
+  thicknesValue: string;
+}
+
+export interface ICanvasProps {
+  canvasRef: React.RefObject<HTMLCanvasElement>;
+  file: IFile | undefined;
+  onSetContext: (context: CanvasRenderingContext2D) => void;
 }

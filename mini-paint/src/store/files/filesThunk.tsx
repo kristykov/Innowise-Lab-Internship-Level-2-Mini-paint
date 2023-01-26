@@ -4,6 +4,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
   getStorage,
+  getBlob,
 } from "firebase/storage";
 import {
   collection,
@@ -31,6 +32,7 @@ export const getFiles = createAsyncThunk(
 );
 
 export const createNewFile = createAsyncThunk(
+  // rename to createFile
   "createFile",
   async (data: CreationFileValues) => {
     const db = getFirestore();
@@ -49,11 +51,10 @@ export const createNewFile = createAsyncThunk(
 );
 
 export const uploadFile = createAsyncThunk(
-  "createUser",
+  "uploadFile",
   async (selectedFile: File, { dispatch, getState }) => {
     const state = getState();
     const { userId } = (state as IRootState).auth;
-
     const fileName = selectedFile.name;
 
     const firestorage = getStorage();
@@ -66,3 +67,12 @@ export const uploadFile = createAsyncThunk(
     dispatch(createNewFile({ storageUrl, userId, fileName }));
   },
 );
+
+export const downloadFile = async (refToFile: string) => {
+  const storage = getStorage();
+  const fileRef = ref(storage, refToFile);
+  const blob = await getBlob(fileRef);
+  const blobUrl = URL.createObjectURL(blob);
+  return blobUrl;
+  // console.log(blobUrl);
+};

@@ -1,0 +1,23 @@
+.gallery-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 30px 30px 60px;
+  border: 1px solid rgba(16, 18, 27, 0.4);
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+  background: rgba(16, 18, 27, 0.4);
+}
+
+.gallery-empty-text {
+  width: 320px;
+  text-align: center;
+}
+
+.gallery-items-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+}

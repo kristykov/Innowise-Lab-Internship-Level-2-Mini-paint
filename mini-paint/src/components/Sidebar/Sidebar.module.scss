@@ -1,0 +1,61 @@
+.menu {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 300px;
+    padding: 100px 0px;
+    background: rgba(16, 18, 27, 0.4);
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 14px;
+  }
+
+  &-button {
+    width: 150px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid rgba(16, 18, 27, 0.4);
+    background: none;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 18px;
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(12, 15, 25, 0.3);
+    }
+  }
+}
+
+.menu-input {
+  height: 0;
+  width: 0;
+  opacity: 0;
+}
+
+.menu-label {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  height: 40px;
+  justify-content: center;
+  color: #fff;
+  border: 1px solid rgba(16, 18, 27, 0.4);
+  font-size: 18px;
+  border-radius: 6px;
+  text-align: center;
+  transition: background-color 0.5s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(12, 15, 25, 0.3);
+  }
+}
+
+.menu-input::file-selector-button {
+  border: none;
+  background-color: none;
+}

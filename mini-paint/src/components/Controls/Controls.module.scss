@@ -1,0 +1,33 @@
+.controls {
+  &-container {
+    display: flex;
+    gap: 24px;
+  }
+  &-btn {
+    width: 100px;
+    height: 30px;
+    border-radius: 14px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    transition: background-color 0.5s ease;
+  }
+}
+
+.save-btn {
+  background-color: #3a6df0;
+
+  &-hover {
+    background: #1e59f1;
+  }
+}
+
+.cancel-btn {
+  border: 1px solid #fff;
+  background: none;
+
+  &-hover {
+    background-color: rgba(12, 15, 25, 0.3);
+  }
+}
