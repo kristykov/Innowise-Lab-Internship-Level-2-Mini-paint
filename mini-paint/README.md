@@ -11,7 +11,7 @@ ImageDraw is a React application that allows you to upload images, store them, d
 
 ## Deploy
 
-[https://clever-todo-list-tassker.netlify.app](https://mini-paint-image-draw.netlify.app) //correct
+[https://clever-todo-list-tassker.netlify.app](https://mini-paint-image-draw.netlify.app/login)
 
 ### Task
 
