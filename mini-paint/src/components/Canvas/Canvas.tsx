@@ -1,4 +1,4 @@
-import React, { useEffect, useState, MouseEvent } from "react";
+import React, { useEffect, useState, MouseEvent, useRef } from "react";
 import { useSelector } from "react-redux";
 import { downloadFile } from "../../store/files/filesThunk";
 import {
@@ -51,6 +51,8 @@ const Canvas = ({ canvasRef, file, onSetContext }: ICanvasProps) => {
   const [snapshot, setSnapshot] = useState<ImageData | null>(null);
   const [drawing, setDrawing] = useState(false);
 
+  const cursorRef = useRef(null);
+
   useEffect(() => {
     const handleResize = () => {
       if (canvasRef.current) {
@@ -97,6 +99,14 @@ const Canvas = ({ canvasRef, file, onSetContext }: ICanvasProps) => {
     }
   }, [canvasRef, canvasSize]);
 
+  const setCursor = (x: number, y: number) => {
+    const cursor = cursorRef.current;
+    cursor.style.width = `${thickness}px`;
+    cursor.style.height = `${thickness}px`;
+    cursor.style.top = `${y}px`;
+    cursor.style.left = `${x}px`;
+  };
+
   const startDraw = ({ nativeEvent }: MouseEvent) => {
     const canvas = canvasRef.current;
     const offsetX = (nativeEvent.offsetX * canvas.width) / canvas.clientWidth;
@@ -130,6 +140,7 @@ const Canvas = ({ canvasRef, file, onSetContext }: ICanvasProps) => {
   };
 
   const draw = ({ nativeEvent }: MouseEvent) => {
+    setCursor(nativeEvent.clientX, nativeEvent.clientY);
     if (!drawing) return;
     const canvas = canvasRef.current;
     const offsetX = (nativeEvent.offsetX * canvas.width) / canvas.clientWidth;
@@ -170,6 +181,7 @@ const Canvas = ({ canvasRef, file, onSetContext }: ICanvasProps) => {
         onMouseUp={stopDraw}
         onMouseMove={draw}
       />
+      <div className={s["canvas-cursor"]} ref={cursorRef} />
     </div>
   );
 };

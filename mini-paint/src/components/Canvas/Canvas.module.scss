@@ -5,4 +5,24 @@
     border-top-right-radius: 14px;
     border-bottom-right-radius: 14px;
   }
+
+  &-cursor {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: none;
+    border: 1px solid white;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    opacity: 0;
+    mix-blend-mode: difference;
+    pointer-events: none;
+  }
+
+  &-field:hover + &-cursor {
+    opacity: 1;
+  }
 }
