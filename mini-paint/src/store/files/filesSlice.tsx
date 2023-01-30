@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IRootState, IFile } from "../../interfaces";
-import { getFiles, createNewFile } from "./filesThunk";
+import { getFiles, createFile } from "./filesThunk";
 
 const initialFilesState = {
   files: [] as IFile[],
@@ -21,14 +21,14 @@ export const filesSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(createNewFile.pending, (state) => {
+    builder.addCase(createFile.pending, (state) => {
       return {
         ...state,
         loading: true,
       };
     });
     builder.addCase(
-      createNewFile.fulfilled,
+      createFile.fulfilled,
       (state, action: PayloadAction<IFile>) => {
         return {
           ...state,

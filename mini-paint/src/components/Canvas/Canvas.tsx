@@ -64,13 +64,6 @@ const Canvas = ({ canvasRef, file, onSetContext }: ICanvasProps) => {
     };
   }, [canvasRef, context]);
 
-  // useEffect(() => {
-  //   if (context) {
-  //     setContext(canvasRef.current.getContext("2d"));
-  //     fillCanvasWithColor(context, canvasSize.width, canvasSize.height);
-  //   }
-  // }, [canvasSize]);
-
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
@@ -88,13 +81,13 @@ const Canvas = ({ canvasRef, file, onSetContext }: ICanvasProps) => {
           const img = new Image();
           img.src = await downloadFile(file.imgUrl);
           img.onload = () => {
-            initialContext?.drawImage(img, 0, 0, 250, 280);
+            initialContext?.drawImage(img, 0, 0, canvas.width, canvas.height);
           };
         };
         setCanvasBg();
       }
     }
-  }, [canvasSize]);
+  }, [canvasRef, canvasSize]);
 
   const startDraw = ({ nativeEvent }: MouseEvent) => {
     const { offsetX, offsetY } = nativeEvent;

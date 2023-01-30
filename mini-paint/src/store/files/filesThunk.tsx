@@ -31,8 +31,7 @@ export const getFiles = createAsyncThunk(
   },
 );
 
-export const createNewFile = createAsyncThunk(
-  // rename to createFile
+export const createFile = createAsyncThunk(
   "createFile",
   async (data: CreationFileValues) => {
     const db = getFirestore();
@@ -64,7 +63,7 @@ export const uploadFile = createAsyncThunk(
     await uploadTask;
 
     const storageUrl = await getDownloadURL(uploadTask.snapshot.ref);
-    dispatch(createNewFile({ storageUrl, userId, fileName }));
+    dispatch(createFile({ storageUrl, userId, fileName }));
   },
 );
 
