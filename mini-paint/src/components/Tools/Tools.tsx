@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import s from "./Tools.module.scss";
-import Rectangular from "../../assets/rectangular.svg";
-import Circle from "../../assets/circle.svg";
-import Triangle from "../../assets/triangle.svg";
-import Brush from "../../assets/brush.svg";
-import Eraser from "../../assets/eraser.svg";
-import Line from "../../assets/line.svg";
-import Star from "../../assets/star.svg";
-import Heart from "../../assets/heart.svg";
+import SVGs from "../../assets";
 import { IToolsProps } from "../../interfaces/index";
 
 const Tools = ({
@@ -80,7 +73,7 @@ const Tools = ({
             }`}
           >
             Line
-            <Line className={s["tools-btn-icon"]} />
+            <SVGs.Line className={s["tools-btn-icon"]} />
           </button>
           <button
             data-type="rect"
@@ -93,7 +86,7 @@ const Tools = ({
             }`}
           >
             Rectangular
-            <Rectangular className={s["tools-btn-icon"]} />
+            <SVGs.Rectangular className={s["tools-btn-icon"]} />
           </button>
           <button
             data-type="circle"
@@ -106,7 +99,7 @@ const Tools = ({
             }`}
           >
             Circle
-            <Circle className={s["tools-btn-icon"]} />
+            <SVGs.Circle className={s["tools-btn-icon"]} />
           </button>
           <button
             data-type="triangle"
@@ -119,7 +112,7 @@ const Tools = ({
             }`}
           >
             Triangle
-            <Triangle className={s["tools-btn-icon"]} />
+            <SVGs.Triangle className={s["tools-btn-icon"]} />
           </button>
           <button
             data-type="star"
@@ -132,7 +125,7 @@ const Tools = ({
             }`}
           >
             Star
-            <Star className={s["tools-btn-icon"]} />
+            <SVGs.Star className={s["tools-btn-icon"]} />
           </button>
           <button
             data-type="heart"
@@ -145,7 +138,7 @@ const Tools = ({
             }`}
           >
             Heart
-            <Heart className={s["tools-btn-icon"]} />
+            <SVGs.Heart className={s["tools-btn-icon"]} />
           </button>
         </div>
         <div className={s["tools-subsection"]}>
@@ -161,7 +154,7 @@ const Tools = ({
             }`}
           >
             Brush
-            <Brush className={s["tools-btn-icon"]} />
+            <SVGs.Brush className={s["tools-btn-icon"]} />
           </button>
           <button
             data-type="eraser"
@@ -174,7 +167,7 @@ const Tools = ({
             }`}
           >
             Eraser
-            <Eraser className={s["tools-btn-icon"]} />
+            <SVGs.Eraser className={s["tools-btn-icon"]} />
           </button>
           <label htmlFor="">
             <input
