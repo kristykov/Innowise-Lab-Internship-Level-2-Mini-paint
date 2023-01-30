@@ -8,14 +8,16 @@ import {
   getShapeSelector,
   getThicknessSelector,
 } from "../../store/canvas/canvasSlice";
-import takeBrush from "../../helpers/takeBrush";
-import takeEraser from "../../helpers/takeEraser";
-import drawRect from "../../helpers/drawRect";
-import drawCircle from "../../helpers/drawCircle";
-import drawTriangle from "../../helpers/drawTringle";
-import drawLine from "../../helpers/drawLine";
-import drawStar from "../../helpers/drawStar";
-import drawHeart from "../../helpers/drawHeart";
+import {
+  takeBrush,
+  takeEraser,
+  drawRect,
+  drawCircle,
+  drawTriangle,
+  drawLine,
+  drawStar,
+  drawHeart,
+} from "../../helpers/index";
 
 import s from "./Canvas.module.scss";
 
