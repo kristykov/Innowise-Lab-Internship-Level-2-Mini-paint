@@ -1,7 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent } from "react";
 import s from "./Tools.module.scss";
 import SVGs from "../../assets";
-import { IToolsProps } from "../../interfaces/index";
+
+interface IToolsProps {
+  onSelectShapeHandler: (shape: string) => void;
+  onSelectToolHandler: (tool: string) => void;
+  onSelectDefaultColorHandler: (color: string) => void;
+  onSelectCustomColorHandler: (e: ChangeEvent<HTMLInputElement>) => void;
+  onSelectThicknessHandler: (e: ChangeEvent<HTMLInputElement>) => void;
+  onClearCanvas: () => void;
+  thicknesValue: string;
+}
 
 const Tools = ({
   onSelectShapeHandler,

@@ -1,6 +1,13 @@
 import React from "react";
 import classes from "./GalleryItem.module.scss";
-import { IGalleryItemProps } from "../../interfaces/index";
+
+interface IGalleryItemProps {
+  name: string;
+  fileId: string;
+  imgUrl: string;
+  date: string;
+  onOpenCanvas: (id: string) => void;
+}
 
 const GalleryItem = ({
   name,

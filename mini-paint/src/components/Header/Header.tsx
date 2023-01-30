@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import classes from "./Header.module.scss";
-import { IHeaderProps } from "../../interfaces/index";
+
+interface IHeaderProps {
+  logoutHandler: () => void;
+  searchHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
 const Header = ({ logoutHandler, searchHandler }: IHeaderProps) => {
   return (

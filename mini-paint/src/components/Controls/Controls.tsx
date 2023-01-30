@@ -1,6 +1,10 @@
 import React from "react";
-import { IControlsProps } from "../../interfaces/index";
 import s from "./Controls.module.scss";
+
+interface IControlsProps {
+  onCancelHandler: () => void;
+  onSaveHandler: () => void;
+}
 
 const Controls = ({ onCancelHandler, onSaveHandler }: IControlsProps) => {
   return (

@@ -1,6 +1,11 @@
 import React from "react";
 import classes from "./Sidebar.module.scss";
-import { ISidebarProps } from "../../interfaces/index";
+
+interface ISidebarProps {
+  changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error: string;
+  createNewCanvas: () => void;
+}
 
 const Sidebar = ({ changeHandler, error, createNewCanvas }: ISidebarProps) => {
   return (

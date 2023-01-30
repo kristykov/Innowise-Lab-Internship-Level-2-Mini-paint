@@ -1,6 +1,5 @@
 import React, { useEffect, useState, MouseEvent } from "react";
 import { useSelector } from "react-redux";
-import { ICanvasProps } from "../../interfaces";
 import { downloadFile } from "../../store/files/filesThunk";
 import {
   getToolSelector,
@@ -18,6 +17,7 @@ import {
   drawStar,
   drawHeart,
 } from "../../helpers/index";
+import { IFile } from "../../interfaces";
 
 import s from "./Canvas.module.scss";
 
@@ -31,6 +31,12 @@ const fillCanvasWithColor = (
     ctx.fillRect(0, 0, width, height);
   }
 };
+
+interface ICanvasProps {
+  canvasRef: React.RefObject<HTMLCanvasElement>;
+  file: IFile | undefined;
+  onSetContext: (context: CanvasRenderingContext2D) => void;
+}
 
 const Canvas = ({ canvasRef, file, onSetContext }: ICanvasProps) => {
   const tool = useSelector(getToolSelector);
