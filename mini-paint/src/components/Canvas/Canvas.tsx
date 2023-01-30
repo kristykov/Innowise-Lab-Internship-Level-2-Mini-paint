@@ -90,7 +90,9 @@ const Canvas = ({ canvasRef, file, onSetContext }: ICanvasProps) => {
   }, [canvasRef, canvasSize]);
 
   const startDraw = ({ nativeEvent }: MouseEvent) => {
-    const { offsetX, offsetY } = nativeEvent;
+    const canvas = canvasRef.current;
+    const offsetX = (nativeEvent.offsetX * canvas.width) / canvas.clientWidth;
+    const offsetY = (nativeEvent.offsetY * canvas.height) / canvas.clientHeight;
     setPrevMouseX(offsetX);
     setPrevMouseY(offsetY);
 
@@ -121,7 +123,10 @@ const Canvas = ({ canvasRef, file, onSetContext }: ICanvasProps) => {
 
   const draw = ({ nativeEvent }: MouseEvent) => {
     if (!drawing) return;
-    const { offsetX, offsetY } = nativeEvent;
+    const canvas = canvasRef.current;
+    const offsetX = (nativeEvent.offsetX * canvas.width) / canvas.clientWidth;
+    const offsetY = (nativeEvent.offsetY * canvas.height) / canvas.clientHeight;
+
     if (context) {
       context.putImageData(snapshot, 0, 0);
       if (tool === "brush") {
